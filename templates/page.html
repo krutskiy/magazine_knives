@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+  
+  <!-- Home Section -->
+
+<section id="home">
+    <div class="container">
+         <div class="row">
+              <div class="col-md-12 col-sm-12">
+                   {{ this.body }}
+                   <hr>
+                   
+               <!-- last work -->
+      
+               <div class="col-md-12 col-sm-12">
+                    <div class="padding"></div>
+                    <h2>Последние проекты</h2>
+                    <hr>
+                </div>
+                    {% for project in site.query('/projects').order_by('-rating').limit(3) %}
+                    <div class="col-md-4 col-sm-6">
+                        <a href="{{ project|url }}">
+                            <div class="portfolio-thumb">
+                        {% set image = project.attachments.images.first() %}
+                        {% if image %}
+                                <img src="{{ image|url }}" alt="" class="img-responsive img-rounded">
+                        {% endif %}
+                                    <div class="portfolio-overlay">
+                                        <div class="portfolio-item">
+                                            <h3><a href="{{ project|url }}">{{ project.name }}</a></h3>
+                                        </div>
+                                    </div>
+                            </div>
+                          </a>
+                      </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="padding"></div>
+                    <h2>Последние посты</h2>
+                    <hr>
+                </div>
+                    <div class="col-md-4 col-sm-4">
+                            <div class="blog-post-thumb">
+                    {% for post in site.query('/blog').order_by('-rating').limit(3) %}
+                    <!-- Blog -->
+                            {% for image in post.attachments.images %}
+                        <a href="{{ post|url }}" ><img src="{{ image.thumbnail(360)|url }}" class="img-responsive img-rounded" alt="" /></a>
+                            {% endfor %}
+                        
+                        <div class="blog-post-title">
+                                <h3><a href="{{ post|url }}">{{ post.title }}</a></h3>
+                           </div>
+                           <div class="blog-post-format">
+                                <span><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{ post.author }}</a></span>
+                                <span><i class="fa fa-date"></i> {{ post.pub_date|dateformat }}</span>
+                           </div>
+                           <div class="blog-post-des">
+                                <p>{{ post.summary }}</p>
+                                <a href="{{ post|url }}" class="btn btn-default">Читать</a>
+                           </div>                
+                    {% endfor %}
+                    </div>
+                 </div>
+            </div>
+    </div>
+</section>
+
+{% endblock %}

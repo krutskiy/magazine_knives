@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}{{ this.name }} {% endblock %}
+{% block body %}
+  <!-- Single Project Section -->
+
+<section id="single-project">
+    <div class="container">
+         <div class="row">
+              <div class="col-md-offset-1 col-md-10 col-sm-12">
+                   <h1>{{ this.name }}</h1>
+                   <p>{{ this.description }}</p>
+                        
+                        {% set images = this.attachments.images.all() %}
+                        {% if images %}
+                            {% for image in images %}
+                            <div class="col-md-4 col-sm-4">
+                                <a href="{{ image|url }}" data-lightbox="{{ image }}"><img src="{{ image|url }}"  alt="" class="img-responsive img-rounded"></a>                                        
+                            </div>       
+                            {% endfor %} 
+                        {% endif %} 
+                   <div class="clearfix"></div> 
+              </div>
+
+         </div>
+    </div>
+</section>
+{% endblock %}

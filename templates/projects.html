@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Проекты{% endblock %}
+{% block body %}
+<!-- Portfolio Section -->
+<section id="portfolio">
+    <div class="container">
+         <div class="row">          
+            {% for project in this.children.order_by('-rating') %}
+              <div class="col-md-4 col-sm-6">
+                <a href="{{ project|url }}">
+                    <div class="portfolio-thumb">
+                {% set image = project.attachments.images.first() %}
+                {% if image %}
+                        <img src="{{ image|url }}" alt="" class="img-responsive img-rounded">
+                {% endif %}
+                             <div class="portfolio-overlay">
+                                <div class="portfolio-item">
+                                    <h3><a href="{{ project|url }}">{{ project.name }}</a></h3>
+                                </div>
+                            </div>
+                    </div>
+                  </a>
+              </div>
+                    {% endfor %}
+          <div class="col-md-12 col-sm-12 text-center">
+                {{ this.label }} 
+          </div>
+        </div>
+    </div>
+  </section>
+{% endblock %}

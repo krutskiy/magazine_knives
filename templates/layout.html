@@ -1,0 +1,80 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="сайт о создание авторских ножей ручной работы">
+<meta name="keywords" content="ножи, нож, ножи ручной работы, авторские ножи, Береговой, гриндер">
+<meta name="author" content="Береговой">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="yandex-verification" content="abc42ef33b8ae8b1" />
+<meta name="google-site-verification" content="nwGvoFPt5urH_7eoLjtIFRc46myZs1srQZeMfALZ29k" />
+<link rel="apple-touch-icon" sizes="57x57" href="{{ '../../static/images/favicon/apple-icon-57x57.png'|url }}">
+<link rel="apple-touch-icon" sizes="60x60" href="{{ '../../static/images/favicon/apple-icon-60x60.png'|url }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ '../../static/images/favicon/apple-icon-72x72.png'|url }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ '../../static/images/favicon/apple-icon-76x76.png'|url }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ '../../static/images/favicon/apple-icon-114x114.png'|url }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ '../../static/images/favicon/apple-icon-120x120.png'|url }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ '../../static/images/favicon/apple-icon-144x144.png'|url }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ '../../static/images/favicon/apple-icon-152x152.png'|url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '../../static/images/favicon/apple-icon-180x180.png'|url }}">
+<link rel="icon" type="image/png" sizes="192x192"  href="{{ '../../static/images/favicon/apple-icon-192x192.png'|url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '../../static/images/favicon/favicon-32x32.png'|url }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ '../../static/images/favicon/favicon-96x96.png'|url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '../../static/images/favicon/favicon-16x16.png'|url }}">
+<link rel="manifest" href="{{ '../../static/images/favicon/manifest.json'|url }}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="{{ '../../static/images/favicon/ms-icon-144x144.png'|url }}">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="{{ '/static/css/bootstrap.min.css'|url }}">
+<link rel="stylesheet" href="{{ '/static/css/font-awesome.min.css'|url }}">
+<link rel="stylesheet" href="{{ '/static/css/style.css'|url }}">
+<link rel="stylesheet" href="{{ '/static/css/lightbox.css'|url }}">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet"> 
+<title>{% block title %}{% endblock %}</title>
+<body>
+   <!-- PRE LOADER -->
+
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-wordpress">
+         <span class="sk-inner-circle"></span>
+    </div>
+</div>
+<!-- Navigation section  -->
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+
+         <div class="navbar-header">
+              <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="icon icon-bar"></span>
+                   <span class="icon icon-bar"></span>
+                   <span class="icon icon-bar"></span>
+              </button>
+              <a href="{{ '/'|url }}" ><img src="{{ '../../static/images/logo.png'|url }}" width="50%" height="50%" alt="logo"></a>
+         </div>
+         <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right"> 
+                <li{% if this._path == '/' %} class="active"{% endif
+                  %}><a href="{{ '/'|url }}">Главная</a></li>
+                {% for href, title in [
+                  ['/projects', 'Проекты'],
+                  ['/blog', 'Блог'],                  
+                  ['/about', 'Обо мне']
+                ] %}
+                  <li{% if this.is_child_of(href) %} class="active"{% endif
+                    %}><a href="{{ href|url }}">{{ title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+  </div>  
+  
+    {% block body %}{% endblock %}
+  
+  {% include 'footer.html' %} 
+  <!-- SCRIPTS -->
+<script src="{{ '/static/js/jquery.js' |url }}"></script>
+<script src="{{ '/static/js/bootstrap.min.js' |url }}"></script>
+<script src="{{ '/static/js/custom.js' |url }}"></script>
+<script src="{{ '/static/js/lightbox.js' |url }}"></script>
+
+</body>

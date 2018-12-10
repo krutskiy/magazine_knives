@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+{% from "macros/pagination.html" import render_pagination %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+  <!-- Blog Section -->
+
+<section id="blog">
+    <div class="container">
+         <div class="row">
+            
+              <div class="col-md-offset-1 col-md-10 col-sm-12">
+                   <div class="section-title">
+                        <h3>Последние посты</h3>
+                        
+                   </div>
+  {% for post in this.pagination.items %}
+                   <div class="blog-post-thumb">
+                        <div class="blog-post-image">
+                             <a href="{{ post|url }}">
+                                {% set image = post.attachments.images.first() %}
+                                {% if image %}
+                                <div class="image"><img src="{{ image|url }}" alt="Blog Image" class="img-responsive"></div>
+                                {% endif %}                             
+                             </a>
+                        </div>
+                        <div class="blog-post-title">
+                             <h3><a href="{{ post|url }}">{{ post.title }}</a></h3>
+                        </div>
+                        <div class="blog-post-format">
+                             <span><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{ post.author }}</a></span>
+                             <span><i class="fa fa-date"></i> {{ post.pub_date|dateformat }}</span>
+                        </div>
+                        <div class="blog-post-des">
+                             <p>{{ post.summary }}</p>
+                             <a href="{{ post|url }}" class="btn btn-default">Читать</a>
+                        </div>
+                   </div>
+  {% endfor %}
+              </div>
+              
+              {% if this.pagination.pages > 1 %}
+      {{ render_pagination(this.pagination) }}
+    {% endif %}
+         </div>
+    </div>
+  </section>
+{% endblock %}

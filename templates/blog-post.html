@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+  <!--{{ render_blog_post(this) }}-->
+  <!-- Blog Single Post Section -->
+
+<section id="blog-single-post">
+    <div class="container">
+         <div class="row">
+              <div class="col-md-offset-1 col-md-10 col-sm-12">
+                   <div class="blog-single-post-thumb">
+                     
+                        <div class="blog-post-image">
+                            {% for image in this.attachments.images %}
+                             <img src="{{ image|url }}" class="img-responsive" alt="Blog Image">
+                             {% endfor %}
+                        </div>
+
+                        <div class="blog-post-title">
+                             <h2>{{ this.title }}</a></h2>
+                        </div>
+
+                        <div class="blog-post-format">
+                            <span><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{ this.author }}</a></span>
+                             <span><i class="fa fa-date"></i> {{ this.pub_date|dateformat }}</span>
+                        </div>
+                      {{ this.body }}
+                        <div class="blog-post-des">
+                             
+                        </div>
+                   </div>
+         </div>
+    </div>
+</section>
+{% endblock %}

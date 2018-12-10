@@ -1,0 +1,6 @@
+[project]
+name = knivesberegovogo
+locale = ru_RU
+[servers.production]
+target = ftps://y-krutskiy_krootik:Krutskiy1984@y-krutskiy.myjino.ru/domains/xn----9sbddjakqg5bhbdt.xn--p1ai
+
